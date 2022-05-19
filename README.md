@@ -1,8 +1,23 @@
 # CosmJS beginner sandbox
 
-Use it to experiment with CosmJS commands.
+To reproduce issue on Cosmos SDK v0.46
 
-## Install it
+## Local chain
+Make sure to nuke your .simapp folder or set a different home directory and checkout `v0.46.0-beta2` in your SDK folder
+
+```sh
+simd config chain-id demo
+simd config keyring-backend test
+simd keys add alice
+simd keys add bob
+simd init test --chain-id demo
+simd add-genesis-account alice 5000000000stake --keyring-backend test
+simd gentx alice 1000000stake --chain-id demo
+simd collect-gentxs
+simd start --mode validator
+```
+
+## Install packages
 
 ```sh
 $ npm install
@@ -11,16 +26,5 @@ $ npm install
 ## Run it
 
 ```sh
-$ npm run experiment
+$ npm run experiment-local
 ```
-
-## Exercise progression
-
-As you progress with your exercise, you can look at the _solutions_ in their respective branches. Here is how the branches follow each other:
-
-* `master`, start here
-* `file-preparation`, [diff](https://github.com/b9lab/cosmjs-sandbox/compare/master...file-preparation)
-* `with-stargate-client`, [diff](https://github.com/b9lab/cosmjs-sandbox/compare/file-preparation...with-stargate-client)
-* `with-signing-stargate-client`, [diff](https://github.com/b9lab/cosmjs-sandbox/compare/with-stargate-client...with-signing-stargate-client)
-* `send-tokens`, [diff](https://github.com/b9lab/cosmjs-sandbox/compare/with-signing-stargate-client...send-tokens)
-* `send-tokens-local`, [diff](https://github.com/b9lab/cosmjs-sandbox/compare/send-tokens...send-tokens-local)
